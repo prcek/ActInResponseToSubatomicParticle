@@ -2,3 +2,13 @@
   text-align: left;
   font-style: bold;
 }
+.StatusIcon >  .error {
+    color: red;
+}
+.StatusIcon >  .ok {
+    color: green;
+}
+
+.StatusIcon > .fa:not(.error):not(.ok) {
+    color: gray;
+}

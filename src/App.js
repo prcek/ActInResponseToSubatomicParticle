@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StatusIcon from './StatusIcon';
 import DBSingleton from './libs/DBTest';
+import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
 import {Icon} from 'react-fa'
 import logo from './logo.svg';
@@ -13,6 +14,8 @@ class App extends Component {
     super(props);
 
     this.cfg = new Cfg();
+    this.isElectron = isElectron();
+    console.log(this.isElectron);
 
     this.state = {date: new Date(), status:this.cfg.lasers};
     this.timer = DBSingleton.getInstance();
@@ -50,7 +53,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React/Electron</h2>
+          <h2>Welcome to React/Electron {this.isElectron?"yes":"no"}</h2>
         </div>
         <p className="App-intro">
           Hello Electron! {this.state.date.toLocaleTimeString()}
@@ -62,7 +65,7 @@ class App extends Component {
         <button onClick={(e)=>this.deactivateLaser(e)}>
           Deactivate Lasers
         </button>
-        <Icon spin={this.state.status == "on"} name="spinner" size="3x" />,
+        <Icon spin={this.state.status === "on"} className="text-danger" name="spinner" size="3x" />,
       </div>
     );
   }
