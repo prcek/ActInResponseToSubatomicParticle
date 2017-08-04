@@ -1,5 +1,5 @@
 {
-  "name": "electron-with-create-react-app",
+  "name": "act-in-response-to-subatomic-particle",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -13,12 +13,22 @@
     "react-dom": "^15.4.2",
     "react-fa": "^4.2.0"
   },
+
+  "build": {
+    "appId": "act.in.response.to.subatomic.particle",
+    "asar" : false,
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  },
+
   "homepage": "./",
   "main": "src/electron-starter.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "dist": "electron-builder --dir",
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dev": "nf start -p 3003"
