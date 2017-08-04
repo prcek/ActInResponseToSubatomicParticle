@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StatusIcon from './StatusIcon';
 import DBSingleton from './libs/DBTest';
+import {Icon} from 'react-fa'
 import logo from './logo.svg';
 import './App.css';
 
@@ -53,6 +54,7 @@ class App extends Component {
         <button onClick={(e)=>this.deactivateLaser(e)}>
           Deactivate Lasers
         </button>
+        <Icon spin name="spinner" size="3x" />,
       </div>
     );
   }
