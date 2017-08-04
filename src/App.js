@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StatusIcon from './StatusIcon';
-import DBTest from './libs/DBTest';
+import DBSingleton from './libs/DBTest';
 import logo from './logo.svg';
 import './App.css';
 
@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date(), status:"jedna"};
-    this.timer = new DBTest();
+    this.timer = DBSingleton.getInstance();
     this.timer.setCallback(()=>this.handleTick());
 
 

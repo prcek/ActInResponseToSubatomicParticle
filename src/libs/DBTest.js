@@ -8,7 +8,7 @@ class DBTest {
         this.tm = null;
     }
     tmHandler() {
-        console.log("tick",this.timeout);
+        //console.log("tick",this.timeout);
         if (this.cb) {
             this.cb();
         }
@@ -28,4 +28,22 @@ class DBTest {
 };
 
 
-export default DBTest;
+var DBSingleton = (function () {
+    var instance;
+ 
+    function createInstance() {
+        var object = new DBTest();
+        return object;
+    }
+ 
+    return {
+        getInstance: function () {
+            if (!instance) {
+                instance = createInstance();
+            }
+            return instance;
+        }
+    };
+})();
+
+export default DBSingleton;
