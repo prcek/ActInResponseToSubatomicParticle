@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "electron": "^1.4.14",
+    "electron-builder": "^19.19.1",
     "foreman": "^2.0.0",
     "react-scripts": "0.8.5"
   },
@@ -11,24 +12,23 @@
     "is-electron": "^2.1.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-fa": "^4.2.0"
+    "react-fontawesome": "^1.6.1"
   },
-
   "build": {
     "appId": "act.in.response.to.subatomic.particle",
-    "asar" : false,
+    "asar": false,
     "mac": {
       "category": "your.app.category.type"
     }
   },
-
   "homepage": "./",
   "main": "src/electron-starter.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "dist": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist_test": "electron-builder --dir",
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dev": "nf start -p 3003"

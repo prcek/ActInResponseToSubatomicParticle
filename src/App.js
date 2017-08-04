@@ -3,7 +3,8 @@ import StatusIcon from './StatusIcon';
 import DBSingleton from './libs/DBTest';
 import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
-import {Icon} from 'react-fa'
+//import {Icon} from 'react-fa'
+import FontAwesome from 'react-fontawesome';
 import logo from './logo.svg';
 import './App.css';
 
@@ -65,7 +66,8 @@ class App extends Component {
         <button onClick={(e)=>this.deactivateLaser(e)}>
           Deactivate Lasers
         </button>
-        <Icon spin={this.state.status === "on"} className="text-danger" name="spinner" size="3x" />,
+        <FontAwesome name='rocket' />
+        <FontAwesome spin={this.state.status === "on"} className="text-danger" name="spinner" size="3x" />,
       </div>
     );
   }

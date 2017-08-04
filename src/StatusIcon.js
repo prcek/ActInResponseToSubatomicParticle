@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Icon} from 'react-fa'
+import FontAwesome from 'react-fontawesome';
 import './StatusIcon.css';
 
 class StatusIcon extends Component {
@@ -14,7 +14,7 @@ class StatusIcon extends Component {
   render() {
     return (
       <div className="StatusIcon">
-        <Icon spin={this.props.status === "on"} className="ok" name="spinner" size="3x" />,
+        <FontAwesome spin={this.props.status === "on"} className="ok" name="spinner" size="3x" />,
         status of {this.props.name} is {this.props.status}
       </div>
     );
