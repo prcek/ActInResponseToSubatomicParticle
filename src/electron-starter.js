@@ -57,8 +57,22 @@ app.on('activate', function () {
     }
 });
 
-ipcMain.on('data', (event, payload) => {
-  app.quit();
+ipcMain.on('rr', (event, payload) => {
+    switch(payload.action) {
+        case "quit": 
+            app.quit(); 
+        break;
+        case "togglefs": 
+            if (mainWindow) {
+                mainWindow.setFullScreen(!mainWindow.isFullScreen());
+            }
+        break;
+        case "devtools": 
+            if (mainWindow) {
+                mainWindow.webContents.openDevTools()
+            }
+        break;
+    }
 });
 
 // In this file you can include the rest of your app's specific main process

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import StatusIcon from './StatusIcon';
+import AppCommands from './AppCommands';
 import DBSingleton from './libs/DBTest';
-import testipc from './libs/ECom';
+import ECom from './libs/ECom';
 import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
 //import {Icon} from 'react-fa'
@@ -40,11 +41,6 @@ class App extends Component {
     this.setState({status:"off"});
   }
 
-  ipcTest(e) {
-    console.log(this,"ipc test") 
-    testipc();
-  }
-
 
   handleTick() {
     this.setState({date: new Date()});
@@ -59,6 +55,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <AppCommands />        
+
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React/Electron {this.isElectron?"yes":"no"}</h2>
         </div>
@@ -72,12 +70,7 @@ class App extends Component {
         <button onClick={(e)=>this.deactivateLaser(e)}>
           Deactivate Lasers
         </button>
-
-        <button onClick={(e)=>this.ipcTest(e)}>
-          ipc test
-        </button>
         
-        <FontAwesome name='rocket' />
         <FontAwesome spin={this.state.status === "on"} className="text-danger" name="spinner" size="3x" />,
       </div>
     );

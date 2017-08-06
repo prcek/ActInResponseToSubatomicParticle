@@ -1,5 +1,6 @@
 const electron = require('electron');
 const app = electron.app;
+const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
@@ -38,3 +39,20 @@ app.on('activate', function () {
     }
 });
 
+ipcMain.on('rr', (event, payload) => {
+    switch(payload.action) {
+        case "quit": 
+            app.quit(); 
+        break;
+        case "togglefs": 
+            if (mainWindow) {
+                mainWindow.setFullScreen(!mainWindow.isFullScreen());
+            }
+        break;
+        case "devtools": 
+            if (mainWindow) {
+                mainWindow.webContents.openDevTools()
+            }
+        break;
+    }
+});
