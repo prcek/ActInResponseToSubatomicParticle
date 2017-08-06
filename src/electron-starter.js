@@ -1,6 +1,7 @@
 const electron = require('electron');
 // Module to control application life.
 const app = electron.app;
+const ipcMain = electron.ipcMain;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
@@ -54,6 +55,10 @@ app.on('activate', function () {
     if (mainWindow === null) {
         createWindow()
     }
+});
+
+ipcMain.on('data', (event, payload) => {
+  app.quit();
 });
 
 // In this file you can include the rest of your app's specific main process
