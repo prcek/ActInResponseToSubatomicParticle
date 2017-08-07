@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import StatusIcon from './StatusIcon';
 import AppCommands from './AppCommands';
 import DBSingleton from './libs/DBTest';
-import ECom from './libs/ECom';
+//import ECom from './libs/ECom';
 import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
 //import {Icon} from 'react-fa'
@@ -41,6 +41,14 @@ class App extends Component {
     this.setState({status:"off"});
   }
 
+  openCfg() {
+    console.log(this,"openCfg");
+  }
+  
+  dbTest() {
+    console.log(this,"dbTest");
+  }
+
 
   handleTick() {
     this.setState({date: new Date()});
@@ -55,8 +63,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <AppCommands />        
-
+          <AppCommands onOpenCfg={(e)=>this.openCfg()} onDBTest={(e)=>this.dbTest(e)} />        
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React/Electron {this.isElectron?"yes":"no"}</h2>
         </div>
