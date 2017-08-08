@@ -18,6 +18,9 @@ class AppCommands extends Component {
                 <button onClick={(e)=>this.callDBTest(e)}>
                 DBTest
                 </button>
+                <button onClick={(e)=>this.props.onDBClean(e)}>
+                DBClean
+                </button>
                 <button onClick={(e)=>this.props.onOpenCfg(e)}>
                 openCfg
                 </button>
@@ -37,7 +40,8 @@ class AppCommands extends Component {
 
 AppCommands.propTypes = {
     onOpenCfg: PropTypes.func.isRequired,
-    onDBTest: PropTypes.func
+    onDBTest: PropTypes.func,
+    onDBClean: PropTypes.func.isRequired 
 };
 
 

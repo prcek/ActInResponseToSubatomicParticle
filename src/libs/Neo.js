@@ -1,16 +1,10 @@
 
 
-//import isElectron from 'is-electron';
 
 var Datastore = require('nedb');
 
-var test_db = null;
 
-//if (isElectron()) {
-    test_db = new Datastore({ filename: 'test.db', autoload: true });
-//} else {
-//    test_db = new Datastore();
-//}
+var test_db = new Datastore({ filename: 'test.db', autoload: true });
 
 
 
@@ -40,11 +34,19 @@ function doFind() {
 }
  
 
+function doClean(){
+    return new Promise(function(resolve,reject){
+        test_db.remove({},{multi: true},function (err, numRemoved) {
+            resolve("ok");
+        });
+    })
+}
 
 
 
 module.exports = {
   doInsert: doInsert,
-  doFind: doFind
+  doFind: doFind,
+  doClean: doClean
 };
 

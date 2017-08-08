@@ -53,6 +53,13 @@ class App extends Component {
     })
   }
 
+  dbClean() {
+    console.log(this,"dbClean");
+    Neo.doClean().then((x)=>{
+      
+    })
+  }
+
 
   handleTick() {
     this.setState({date: new Date()});
@@ -70,7 +77,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <AppCommands onOpenCfg={(e)=>this.openCfg()} onDBTest={(e)=>this.dbTest(e)} />        
+          <AppCommands onOpenCfg={(e)=>this.openCfg()} onDBTest={(e)=>this.dbTest(e)} onDBClean={(e)=>this.dbClean(e)} />        
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React/Electron {this.isElectron?"yes":"no"}</h2>
         </div>
