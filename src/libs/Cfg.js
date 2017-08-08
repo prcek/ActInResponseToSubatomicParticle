@@ -16,6 +16,20 @@ class Cfg {
     set lasers(val) {
         this.setItem("lasers",val);
     }
+    get name() {
+        return this.getItem("name","?");
+    }
+    set name(val) {
+        this.setItem("name",val);
+    }
+
+    get surname() {
+        return this.getItem("surname","?");
+    }
+    set surname(val) {
+        this.setItem("surname",val);
+    }
+
 };
 
 

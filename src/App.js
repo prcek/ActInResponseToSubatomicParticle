@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import StatusIcon from './StatusIcon';
 import AppCommands from './AppCommands';
+import CfgPanel from './CfgPanel';
 import DBSingleton from './libs/DBTest';
-//import ECom from './libs/ECom';
+import Neo from './libs/Neo';
 import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
 //import {Icon} from 'react-fa'
@@ -20,7 +21,7 @@ class App extends Component {
     this.isElectron = isElectron();
     console.log(this.isElectron);
 
-    this.state = {date: new Date(), status:this.cfg.lasers};
+    this.state = {date: new Date(), status:this.cfg.lasers, neo:[]};
     this.timer = DBSingleton.getInstance();
     this.timer.setCallback(()=>this.handleTick());
 
@@ -47,6 +48,9 @@ class App extends Component {
   
   dbTest() {
     console.log(this,"dbTest");
+    Neo.doInsert().then((x)=>{
+      Neo.doFind().then((d)=>{this.setState({neo:d})});
+    })
   }
 
 
@@ -60,6 +64,9 @@ class App extends Component {
   }
 
   render() {
+    const neoItems = this.state.neo.map((i) =>
+      <li>{i._id},{i.text}</li>
+    );
     return (
       <div className="App">
         <div className="App-header">
@@ -77,7 +84,11 @@ class App extends Component {
         <button onClick={(e)=>this.deactivateLaser(e)}>
           Deactivate Lasers
         </button>
-        
+        <CfgPanel cfg={this.cfg}/>
+        <div>
+          neo data:
+          <ul>{neoItems}</ul>
+        </div>
         <FontAwesome spin={this.state.status === "on"} className="text-danger" name="spinner" size="3x" />,
       </div>
     );
