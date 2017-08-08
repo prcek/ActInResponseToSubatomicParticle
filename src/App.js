@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StatusIcon from './StatusIcon';
 import AppCommands from './AppCommands';
 import CfgPanel from './CfgPanel';
+import Tree from './Tree';
 import DBSingleton from './libs/DBTest';
 import Neo from './libs/Neo';
 import RemoteApi from './libs/RemoteApi';
@@ -93,6 +94,7 @@ class App extends Component {
         <button onClick={(e)=>this.deactivateLaser(e)}>
           Deactivate Lasers
         </button>
+        <Tree data={Neo.doFakeTree()}/>
         <CfgPanel cfg={this.cfg}/>
         <div>
           neo data:

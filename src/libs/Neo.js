@@ -13,6 +13,18 @@ function fixId(obj) {
     return copy;
 }
 
+const uuidV4 = require('uuid/v4');
+function newID() {
+  return uuidV4();
+}
+
+function doFakeTree() {
+    return { id:newID(), name: "root", nodes: [
+        {id:newID(), name: "leaf1", nodes: [
+            {id:newID(), name: "leaf1a", nodes: []},  {id:newID(), name: "leaf1b", nodes: []}
+        ] }, {id:newID(), name: "leaf2", nodes: [] }
+    ]};
+}
 
 function doInsertTodo(todo) {
      return new Promise(function(resolve,reject){
@@ -66,6 +78,7 @@ module.exports = {
   doInsertTodo: doInsertTodo,
   doFind: doFind,
   doClean: doClean,
-  fixId: fixId
+  fixId: fixId,
+  doFakeTree
 };
 
