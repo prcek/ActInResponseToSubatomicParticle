@@ -4,6 +4,7 @@ import AppCommands from './AppCommands';
 import CfgPanel from './CfgPanel';
 import DBSingleton from './libs/DBTest';
 import Neo from './libs/Neo';
+import RemoteApi from './libs/RemoteApi';
 import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
 //import {Icon} from 'react-fa'
@@ -48,7 +49,7 @@ class App extends Component {
   
   dbTest() {
     console.log(this,"dbTest");
-    Neo.doInsert().then((x)=>{
+    RemoteApi.updateNeo().then((x)=>{
       Neo.doFind().then((d)=>{this.setState({neo:d})});
     })
   }
@@ -56,7 +57,7 @@ class App extends Component {
   dbClean() {
     console.log(this,"dbClean");
     Neo.doClean().then((x)=>{
-      
+      Neo.doFind().then((d)=>{this.setState({neo:d})});
     })
   }
 
@@ -67,12 +68,13 @@ class App extends Component {
 
   componentDidMount() {
     console.log(this,"componentDidMount");
+    Neo.doFind().then((d)=>{this.setState({neo:d})});
    // this.timer.start();
   }
 
   render() {
     const neoItems = this.state.neo.map((i) =>
-      <li>{i._id},{i.text}</li>
+      <li key={i._id}>{i.title}</li>
     );
     return (
       <div className="App">
