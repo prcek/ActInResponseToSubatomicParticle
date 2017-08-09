@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import Button from 'material-ui/Button';
+import AppBar from 'material-ui/AppBar';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import Toolbar from 'material-ui/Toolbar';
+import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 import StatusIcon from './StatusIcon';
 import AppCommands from './AppCommands';
 import CfgPanel from './CfgPanel';
@@ -12,6 +19,7 @@ import Cfg from './libs/Cfg';
 import FontAwesome from 'react-fontawesome';
 import logo from './logo.svg';
 import './App.css';
+import 'typeface-roboto'
 
 class App extends Component {
 
@@ -79,23 +87,31 @@ class App extends Component {
     );
     return (
       <div className="App">
-        <div className="App-header">
-          <AppCommands onOpenCfg={(e)=>this.openCfg()} onDBTest={(e)=>this.dbTest(e)} onDBClean={(e)=>this.dbClean(e)} />        
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React/Electron {this.isElectron?"yes":"no"}</h2>
-        </div>
-        <p className="App-intro">
-          Hello Electron! {this.state.date.toLocaleTimeString()}
-        </p>
+        
+        <AppBar position="static">
+          <Toolbar>
+            <Button raised color="accent" onClick={(e)=>this.activateLaser(e)}>
+              Activate Lasers
+            </Button>
+            <Button raised color="primary" onClick={(e)=>this.deactivateLaser(e)}>
+              Deactivate Lasers
+            </Button>
+            <AppCommands onOpenCfg={(e)=>this.openCfg()} onDBTest={(e)=>this.dbTest(e)} onDBClean={(e)=>this.dbClean(e)} />
+          </Toolbar>
+        </AppBar>
+
+        <Paper elevation={8}>
+          <Typography type="headline">
+            Hello Electron! {this.state.date.toLocaleTimeString()}
+          </Typography>
+        </Paper>
+
         <StatusIcon name="pepa" status={this.state.status}/>
-        <button onClick={(e)=>this.activateLaser(e)}>
-          Activate Lasers
-        </button>
-        <button onClick={(e)=>this.deactivateLaser(e)}>
-          Deactivate Lasers
-        </button>
         <Tree data={Neo.doFakeTree()}/>
+
         <CfgPanel cfg={this.cfg}/>
+
+        
         <div>
           neo data:
           <ul>{neoItems}</ul>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
 import PropTypes from 'prop-types';
 import ECom from './libs/ECom';
 
@@ -12,28 +14,26 @@ class AppCommands extends Component {
         }
     }
 
+    renderButton(name,onClick) {
+        return (
+            <Grid item>
+                <Button raised onClick={onClick}>
+                    {name}
+                </Button>  
+            </Grid>
+        );
+    }
+
     render() {
         return (
-            <div>
-                <button onClick={(e)=>this.callDBTest(e)}>
-                DBTest
-                </button>
-                <button onClick={(e)=>this.props.onDBClean(e)}>
-                DBClean
-                </button>
-                <button onClick={(e)=>this.props.onOpenCfg(e)}>
-                openCfg
-                </button>
-                <button onClick={(e)=>ECom.toggleFullScreen()}>
-                toggleFullSceen
-                </button>
-                <button onClick={(e)=>ECom.openDevTools()}>
-                openDevTools
-                </button>
-                <button onClick={(e)=>ECom.appQuit()}>
-                appQuit
-                </button>
-            </div>
+            <Grid container justify="center" spacing={8}>
+                {this.renderButton("DBTest",(e)=>this.callDBTest(e))}
+                {this.renderButton("DBClean",(e)=>this.props.onDBClean(e))}
+                {this.renderButton("openCfg",(e)=>this.props.onOpenCfg(e))}
+                {this.renderButton("toggleFullSceen",(e)=>ECom.toggleFullScreen())}
+                {this.renderButton("openDevTools",(e)=>ECom.openDevTools())}
+                {this.renderButton("appQuit",(e)=>ECom.appQuit())}
+            </Grid>
         )
     };
 }
