@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
 import FolderIcon from 'material-ui-icons/Folder';
+import FolderOpenIcon from 'material-ui-icons/FolderOpen';
+import AttachmentIcon from 'material-ui-icons/Attachment';
 import Checkbox from 'material-ui/Checkbox';
 
 const styleSheet = createStyleSheet(theme => ({
@@ -39,8 +41,6 @@ class Tree extends Component {
     }
 
     handleToggle(event,n) {
-        console.log("handleToggle",n.id);
-
         const { toggled } = this.state;
         const currentIndex = toggled.indexOf(n.id);
         const newToggled = [...toggled];
@@ -57,8 +57,6 @@ class Tree extends Component {
     }
 
     handleCheck(event,n) {
-        console.log("handleCheck",n.id);
-
         const { checked } = this.state;
         const currentIndex = checked.indexOf(n.id);
         const newChecked = [...checked];
@@ -75,11 +73,22 @@ class Tree extends Component {
 
     }
 
+
+
     renderItem(n) {
         return (
             <ListItem key={n.id} button dense onClick={event => this.handleToggle(event, n)} style={{paddingLeft: (n.level*32)+'px'}}>
                  <ListItemIcon>
-                    <FolderIcon />
+                     {n.isLeaf ? (
+                        <AttachmentIcon /> 
+                     ):(
+                        this.isToggled(n) ? (
+                            <FolderOpenIcon />
+                        ):(
+                            <FolderIcon />
+                        )
+                     )}
+
                 </ListItemIcon>
                 <ListItemText primary={n.name} secondary={n.id}/>
                 <ListItemSecondaryAction>
@@ -93,9 +102,27 @@ class Tree extends Component {
         );
     }
 
+    isToggled(n) {
+        const { toggled } = this.state;
+        return !(toggled.indexOf(n.id) === -1);
+    }
+
+    isParentToggled(n) {
+        if (n.parentId === null) {
+            return true;
+        }
+        const { toggled } = this.state;
+        if (toggled.indexOf(n.parentId) === -1) {
+            return false;
+        }
+        const p = this.flat.find((i)=>{return i.id === n.parentId});
+        return this.isParentToggled(p);
+    }
+
+
     render() {
         const classes = this.props.classes;
-        const nodes  = this.flat.map((n)=>this.renderItem(n));
+        const nodes  = this.flat.filter((n)=>this.isParentToggled(n)).map((n)=>this.renderItem(n));
         return (
             <div className={classes.root}>
                 <List >
