@@ -9,6 +9,7 @@ import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 import StatusIcon from './StatusIcon';
 import AppCommands from './AppCommands';
 import CfgPanel from './CfgPanel';
+import CfgDialog from './CfgDialog';
 import Tree from './Tree';
 import DBSingleton from './libs/DBTest';
 import Neo from './libs/Neo';
@@ -31,7 +32,7 @@ class App extends Component {
     this.isElectron = isElectron();
     console.log(this.isElectron);
 
-    this.state = {date: new Date(), status:this.cfg.lasers, neo:[]};
+    this.state = {date: new Date(), status:this.cfg.lasers, cfgOpen:false,neo:[]};
     this.timer = DBSingleton.getInstance();
     this.timer.setCallback(()=>this.handleTick());
 
@@ -53,7 +54,8 @@ class App extends Component {
   }
 
   openCfg() {
-    console.log(this,"openCfg");
+    console.log("openCfg");
+    this.setState({cfgOpen:true});
   }
   
   dbTest() {
@@ -105,12 +107,12 @@ class App extends Component {
             Hello Electron! {this.state.date.toLocaleTimeString()}
           </Typography>
         </Paper>
-
+        
         <StatusIcon name="pepa" status={this.state.status}/>
         <Tree data={Neo.doFakeTree()}/>
         <TestIcon />
         <CfgPanel cfg={this.cfg}/>
-
+        <CfgDialog cfg={this.cfg} open={this.state.cfgOpen} onRequestClose={(e)=>this.setState({cfgOpen:false})}/>
 
         <div>
           neo data:
