@@ -18,9 +18,8 @@ install:
   - git reset --hard HEAD
   - npm install npm -g
   - npm install -g json 
-  - npm install electron-builder
   - npm install
-  - npm prune
+  
 
 build_script:
   - ps: env

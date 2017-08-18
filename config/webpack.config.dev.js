@@ -92,7 +92,7 @@ module.exports = {
     ],
 
     noParse: [
-      /dist\/localforage.js/,
+      /localforage\.js/,
     ],
 
     loaders: [

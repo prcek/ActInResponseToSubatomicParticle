@@ -99,7 +99,7 @@ module.exports = {
       }
     ],
     noParse: [
-      /dist\/localforage.js/,
+      /localforage\.js/,
     ],
     loaders: [
       // Default loader: load all assets that are not handled
