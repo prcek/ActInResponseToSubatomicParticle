@@ -17,7 +17,7 @@ install:
   - ps: Install-Product node 7.9.0 x86
   - git reset --hard HEAD
   - npm install npm -g
-  - npm install -g json 
+  - npm install electron-builder
   - npm install
   
 
@@ -25,8 +25,6 @@ build_script:
   - ps: env
   - node --version
   - npm --version
-  - cmd: json -I -f C:\projects\actinresponsetosubatomicparticle\package.json -e 'this.version=process.env.APPVEYOR_BUILD_VERSION'
-  - ps: get-content package.json
   - npm run build
   - npm run dist
 
