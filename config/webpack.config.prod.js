@@ -98,6 +98,9 @@ module.exports = {
         include: paths.appSrc
       }
     ],
+    noParse: [
+      /dist\/localforage.js/,
+    ],
     loaders: [
       // Default loader: load all assets that are not handled
       // by other loaders with the url loader.

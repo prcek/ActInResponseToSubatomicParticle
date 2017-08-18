@@ -3,9 +3,9 @@ import Button from 'material-ui/Button';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
+//import IconButton from 'material-ui/IconButton';
 import Toolbar from 'material-ui/Toolbar';
-import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
+//import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 import StatusIcon from './StatusIcon';
 import AppCommands from './AppCommands';
 import CfgPanel from './CfgPanel';
@@ -18,7 +18,7 @@ import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
 import FontAwesome from 'react-fontawesome';
 import TestIcon from './TestIcon';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import 'typeface-roboto'
 
