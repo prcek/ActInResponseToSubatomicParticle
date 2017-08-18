@@ -15,8 +15,8 @@ import Neo from './libs/Neo';
 import RemoteApi from './libs/RemoteApi';
 import isElectron from 'is-electron';
 import Cfg from './libs/Cfg';
-//import {Icon} from 'react-fa'
 import FontAwesome from 'react-fontawesome';
+import TestIcon from './TestIcon';
 import logo from './logo.svg';
 import './App.css';
 import 'typeface-roboto'
@@ -108,10 +108,10 @@ class App extends Component {
 
         <StatusIcon name="pepa" status={this.state.status}/>
         <Tree data={Neo.doFakeTree()}/>
-
+        <TestIcon />
         <CfgPanel cfg={this.cfg}/>
 
-        
+
         <div>
           neo data:
           <ul>{neoItems}</ul>
